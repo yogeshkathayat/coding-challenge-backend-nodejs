@@ -53,9 +53,9 @@ export class Case extends Model<Case> {
 
   @ForeignKey(() => Officer)
   @Column
-  OfficerId: number;
+  officerId: number;
 
   @BelongsTo(() => Officer)
-  Officer: Officer;
+  officer: Officer;
 
 }

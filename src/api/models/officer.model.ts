@@ -29,15 +29,15 @@ export class Officer extends Model<Officer> {
 
   @ForeignKey(() => Department)
   @Column
-  DepartmentId: number;
+  departmentId: number;
 
   @BelongsTo(() => Department)
-  Department: Department;
+  department: Department;
 
   @ForeignKey(() => Case)
   @Column
-  CaseId: number;
+  caseId: number;
 
   @BelongsTo(() => Case)
-  Case: Case;
+  case: Case;
 }
