@@ -41,6 +41,10 @@ export class Case extends Model<Case> {
 
   @AllowNull(false)
   @Column
+  dateOfTheft:Date;
+
+  @AllowNull(false)
+  @Column
   theftDescription: string;
 
   @AllowNull(false)
