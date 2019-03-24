@@ -1,4 +1,5 @@
 import { Sequelize } from "sequelize-typescript";
+import { Op } from "sequelize";
 import {
     logs,
     env,
@@ -6,18 +7,19 @@ import {
     postgres
 } from "./vars";
 
-const sequelize = new Sequelize({
-    database:postgres.db,
+
+const dbConfig: any = {
+    database: postgres.db,
     dialect: "postgres",
     host: postgres.host,
     port: postgres.port,
     logging: false,
     username: postgres.username,
     password: postgres.password,
-    storage: ":memory:",
-});
+    operatorsAliases: Op,
+    modelPaths: [__dirname + "../api/models/*.model.*"]
+   };
 
-// sequelize.addModels([ModelName]);
+const sequelize = new Sequelize(dbConfig);
 
 export default sequelize;
-
