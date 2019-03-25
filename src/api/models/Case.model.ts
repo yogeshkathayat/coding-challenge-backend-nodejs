@@ -2,21 +2,19 @@ import {
   Table,
   Column,
   Model,
-  HasMany,
   AllowNull,
   PrimaryKey,
   ForeignKey,
   BelongsTo
 } from "sequelize-typescript";
-import { DataType } from "sequelize-typescript";
-import { Officer } from "./officer.model";
+import  Officer from "./Officer.model";
 
 
 
 @Table({
   timestamps: true
 })
-export class Case extends Model<Case> {
+export default class Case extends Model<Case> {
 
 
   @PrimaryKey
@@ -41,7 +39,7 @@ export class Case extends Model<Case> {
 
   @AllowNull(false)
   @Column
-  dateOfTheft:Date;
+  dateOfTheft: Date;
 
   @AllowNull(false)
   @Column
@@ -55,7 +53,7 @@ export class Case extends Model<Case> {
   @Column
   officerId: number;
 
-  @BelongsTo(() => Officer)
+  @BelongsTo(() => Officer, { constraints: false })
   officer: Officer;
 
 }

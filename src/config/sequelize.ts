@@ -1,12 +1,9 @@
 import { Sequelize } from "sequelize-typescript";
 import { Op } from "sequelize";
+import path from "path";
 import {
-    logs,
-    env,
-    basePath,
     postgres
 } from "./vars";
-
 
 const dbConfig: any = {
     database: postgres.db,
@@ -17,8 +14,10 @@ const dbConfig: any = {
     username: postgres.username,
     password: postgres.password,
     operatorsAliases: Op,
-    modelPaths: [__dirname + "../api/models/*.model.*"]
-   };
+    modelPaths: [path.join(__dirname, "../api/models/*.model.*")],
+    modelMatch: (filename: string, member: string) => filename.substring(0, filename.indexOf(".model")) === member.toLowerCase()
+};
+
 
 const sequelize = new Sequelize(dbConfig);
 

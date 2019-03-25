@@ -8,7 +8,7 @@ import * as HttpStatus from "http-status";
 import CustomResponse from "../../util/response";
 import { Request, Response } from "express";
 
-class HandleError {
+export class HandleError {
     /**
      * Catch 404 and forward to error handler
      * @param {*} req
@@ -20,5 +20,3 @@ class HandleError {
         CustomResponse.setResponse(res, false, HttpStatus.NOT_FOUND, errorMessage.NOT_FOUND, version.v1, {});
     }
 }
-
-export default new HandleError();

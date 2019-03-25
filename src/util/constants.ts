@@ -1,7 +1,9 @@
 export const errorMessage = {
-    SUCCESS: "SUCCESS",
-    FAILED: "FAILED",
-    NOT_FOUND: "Page Not Found"
+    SUCCESS: "Sucess",
+    FAILED: "Failed",
+    NOT_FOUND: "Page Not Found",
+    INTERNAL_SERVER_ERROR: "Internal Server Error"
+
 };
 export const version = {
     v1: "v1.0.0",

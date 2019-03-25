@@ -1,10 +1,9 @@
 import dotenv from "dotenv";
+
 /**
  *   Load environment variables from .env file, where API keys and passwords are configured
  */
-
 dotenv.config({ path: ".env" });
-
 
 /**
  * Environment variables
@@ -19,4 +18,5 @@ export const postgres = {
     username: process.env.PGSQL_USER,
     password: process.env.PGSQL_PASS,
 };
-export const logs = process.env.NODE_ENV ===  "production " ?  "combined " :  "dev";
+export const sequelizeSyncForce = process.env.SEQUELIZE_SYNC_FORCE === "false" ? false : true;
+export const logs = process.env.NODE_ENV === "production " ? "combined " : "dev";

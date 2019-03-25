@@ -2,21 +2,20 @@ import {
   Table,
   Column,
   Model,
-  HasMany,
   AllowNull,
   PrimaryKey,
   ForeignKey,
   BelongsTo
 } from "sequelize-typescript";
 
-import { Department } from "./department.model";
-import { Case } from "./case.model";
+import  Department  from "./Department.model";
+import  Case  from "./Case.model";
 
 
 @Table({
   timestamps: true
 })
-export class Officer extends Model<Officer> {
+export default class Officer extends Model<Officer> {
 
 
   @PrimaryKey
@@ -38,6 +37,6 @@ export class Officer extends Model<Officer> {
   @Column
   caseId: number;
 
-  @BelongsTo(() => Case)
+  @BelongsTo(() => Case, { constraints: false })
   case: Case;
 }

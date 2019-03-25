@@ -7,17 +7,18 @@ import routes from "../api/routes/index";
 import expressValidator from "express-validator";
 import {
     logs,
-    env,
+    port,
     basePath
 } from "./vars";
-import HandleError from "../api/middlewares/error";
+import{ HandleError } from "../api/middlewares/error";
+const handleError = new HandleError();
 
 /**
  * Express instance
  * @public
  */
 const app = express();
-app.set("port", env || 3000);
+app.set("port", port || 3000);
 
 // request logging. dev: console | production: file
 app.use(morgan(logs));
@@ -42,7 +43,7 @@ app.disable("x-powered-by");
 app.use(basePath, routes);
 
 // catch 404 and forward to error handler
-app.use(HandleError.notFound);
+app.use(handleError.notFound);
 
 
 export default app;

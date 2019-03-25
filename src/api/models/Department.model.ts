@@ -4,16 +4,14 @@ import {
   Model,
   HasMany,
   AllowNull,
-  PrimaryKey,
-  ForeignKey,
-  BelongsTo
+  PrimaryKey
 } from "sequelize-typescript";
-import { Officer } from "./officer.model";
+import  Officer  from "./Officer.model";
 
 @Table({
   timestamps: true
 })
-export class Department extends Model<Department> {
+export default class Department extends Model<Department> {
 
   @PrimaryKey
   @Column({ autoIncrement: true })
