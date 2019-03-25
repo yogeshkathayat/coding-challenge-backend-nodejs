@@ -22,13 +22,13 @@ export class CaseController {
                 return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, errorMessage.FAILED, version.v1, errors.array());
             }
 
-            const addedCase= await caseService.create(req.body);
+            const addedCase = await caseService.create(req.body);
 
             return CustomResponse.setResponse(res, true, HttpStatus.OK, errorMessage.SUCCESS, version.v1, [addedCase]);
         }
         catch (error) {
-            logger.error(fileName, methodName, ":error in main try block:", `${error}`);
-            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, errorMessage.INTERNAL_SERVER_ERROR, version.v1, []);
+            logger.error(fileName + methodName + ":error in main try block:" + `${error}`);
+            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, `${error}`, version.v1, []);
         }
     }
 
@@ -42,19 +42,19 @@ export class CaseController {
                 return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, errorMessage.FAILED, version.v1, errors.array());
             }
 
-            const resolvedCase= await caseService.resolve(req.body);
+            const resolvedCase = await caseService.resolve(req.body.caseId);
 
             return CustomResponse.setResponse(res, true, HttpStatus.OK, errorMessage.SUCCESS, version.v1, [resolvedCase]);
         }
         catch (error) {
-            logger.error(fileName, methodName, ":error in main try block:", `${error}`);
-            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, errorMessage.INTERNAL_SERVER_ERROR, version.v1, []);
+            logger.error(fileName + methodName + ":error in main try block:" + `${error}`);
+            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, `${error}`, version.v1, []);
         }
     }
 
 
     public async findCases(req: Request, res: Response) {
-        const methodName = "[resolveCase]";
+        const methodName = "[findCases]";
         try {
             const errors = await validationResult(req);
 
@@ -62,17 +62,14 @@ export class CaseController {
                 return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, errorMessage.FAILED, version.v1, errors.array());
             }
 
-            const casesList= await caseService.find(req.body);
+            const casesList = await caseService.find(req.query);
 
-            return CustomResponse.setResponse(res, true, HttpStatus.OK, errorMessage.SUCCESS, version.v1, [casesList]);
+            return CustomResponse.setResponse(res, true, HttpStatus.OK, errorMessage.SUCCESS, version.v1, casesList);
         }
         catch (error) {
-            logger.error(fileName, methodName, ":error in main try block:", `${error}`);
-            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, errorMessage.INTERNAL_SERVER_ERROR, version.v1, []);
+            logger.error(fileName + methodName + " :error in main try block: " + `${error}`);
+            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, `${error}`, version.v1, []);
         }
     }
-
-
-    
 
 }

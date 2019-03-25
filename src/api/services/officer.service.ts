@@ -1,6 +1,5 @@
 
 import Officer from "../models/officer.model";
-import Case from "../models/case.model";
 import { CaseService } from "../services/case.service";
 import Department from "../models/department.model";
 
@@ -12,7 +11,7 @@ export class OfficerService {
     async create(officerObj: Officer) {
 
         try {
-            // check if deptId exists or not
+            // check if departmentId exists or not
             const dept = await Department.findOne({
                 where: {
                     id: officerObj.departmentId

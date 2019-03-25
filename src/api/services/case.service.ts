@@ -1,9 +1,8 @@
 
 import Case from "../models/case.model";
 import Officer from "../models/officer.model";
+import Department from "../models/department.model";
 import {
-    errorMessage,
-    version,
     caseStatus
 } from "../../config/constants";
 
@@ -14,10 +13,10 @@ export class CaseService {
         try {
             const availableOfficer = await Officer.findOne({
                 where: {
-                    caseId: undefined
+                    caseId: null
                 },
                 order: [
-                    ["updatedAt", "DESC"]
+                    ["updatedAt", "ASC"]
                 ]
             });
 
@@ -29,9 +28,10 @@ export class CaseService {
             }
 
             const createdCase = await Case.create(caseObj);
-
-            availableOfficer.caseId = createdCase.id;
-            await availableOfficer.save();
+            if (availableOfficer) {
+                availableOfficer.caseId = createdCase.id;
+                await availableOfficer.save();
+            }
 
             return createdCase;
         } catch (error) {
@@ -56,15 +56,67 @@ export class CaseService {
 
             caseObj.status = caseStatus.RESOLVED;
             const resolvedCase = await caseObj.save();
+            await Officer.update(
+                {
+                    caseId: null
+                },
+                {
+                    where: {
+                        id: caseObj.officerId
+                    }
+                });
             await this.assignCase(caseObj.officerId);
             return resolvedCase;
         } catch (error) {
+            throw error;
 
         }
 
     }
 
     async find(query: any) {
+        try {
+
+            const whereQuery: any = {};
+            if (query.id) {
+                whereQuery.id = query.id;
+            }
+            if (query.status) {
+                whereQuery.status = query.status;
+            }
+            if (query.license) {
+                whereQuery.license = query.license;
+            }
+            if (query.color) {
+                whereQuery.color = query.color;
+            }
+            if (query.type) {
+                whereQuery.type = query.type;
+            }
+            if (query.owner) {
+                whereQuery.owner = query.owner;
+            }
+            if (query.dateOfThefQt) {
+                whereQuery.dateOfTheft = query.dateOfTheft;
+            }
+            if (query.officerId) {
+                whereQuery.officerId = query.officerId;
+            }
+
+
+            const cases = await Case.findAll({
+                where: whereQuery,
+                include: [{
+                    model: Officer,
+                    include: [Department]
+                }]
+            });
+
+            return cases;
+
+        } catch (error) {
+            throw error;
+        }
 
     }
 
@@ -75,7 +127,7 @@ export class CaseService {
                     status: caseStatus.NEW
                 },
                 order: [
-                    ["createdAt", "DESC"]
+                    ["createdAt", "ASC"]
                 ]
             });
             if (unassignedCase) {

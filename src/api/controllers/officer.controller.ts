@@ -27,8 +27,8 @@ export class OfficerController {
             return CustomResponse.setResponse(res, true, HttpStatus.OK, errorMessage.SUCCESS, version.v1, [addedOfficer]);
         }
         catch (error) {
-            logger.error(fileName, methodName, ":error in main try block:", `${error}`);
-            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, errorMessage.INTERNAL_SERVER_ERROR, version.v1, []);
+            logger.error(fileName + methodName + ":error in main try block:" + `${error}`);
+            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, `${error}`, version.v1, []);
         }
     }
 

@@ -39,11 +39,11 @@ app.use(lusca.xssProtection(true));
 
 app.disable("x-powered-by");
 
+
 // mount api routes
 app.use(basePath, routes);
 
 // catch 404 and forward to error handler
 app.use(handleError.notFound);
-
 
 export default app;
