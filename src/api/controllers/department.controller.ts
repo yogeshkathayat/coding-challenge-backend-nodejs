@@ -5,7 +5,7 @@ import * as HttpStatus from "http-status";
 import {
     errorMessage,
     version
-} from "../../util/constants";
+} from "../../config/constants";
 import logger from "../../config/logger";
 import { DepartmentService } from "../services/department.service";
 const departmentService = new DepartmentService();

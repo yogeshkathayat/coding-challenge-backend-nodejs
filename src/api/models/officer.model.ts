@@ -8,8 +8,8 @@ import {
   BelongsTo
 } from "sequelize-typescript";
 
-import  Department  from "./Department.model";
-import  Case  from "./Case.model";
+import  Department  from "./department.model";
+import  Case  from "./case.model";
 
 
 @Table({

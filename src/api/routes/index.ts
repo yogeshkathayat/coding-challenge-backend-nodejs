@@ -1,7 +1,7 @@
 import express from "express";
 import departmentRoute from "./department.route";
-// import caseRoute from "./case.route";
-// import officerRoute from "./officer.route";
+import caseRoute from "./case.route";
+import officerRoute from "./officer.route";
 
 const router = express.Router();
 
@@ -14,11 +14,11 @@ router.get("/status", (req, res) => res.status(200).send("OK"));
  */
 router.use("/docs", express.static("docs"));
 
-// router.use("/case", caseRoute);
+router.use("/case", caseRoute);
 
 router.use("/department", departmentRoute);
 
-// router.use("/officer", officerRoute);
+router.use("/officer", officerRoute);
 
 
 export default router;

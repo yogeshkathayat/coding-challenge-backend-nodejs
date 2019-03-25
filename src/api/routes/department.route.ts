@@ -5,7 +5,7 @@ const router = express.Router();
 const departmentController = new DepartmentController();
 
 /**
- * @api {post} /api/v1/department/add add-department
+ * @api {post} /api/v1/department/add add department
  * @apiDescription add a department
  * @apiVersion 1.0.0
  * @apiName add
@@ -24,6 +24,7 @@ const departmentController = new DepartmentController();
  *    {
  *    "status": false,
  *    "code": 400,
+ *    "appVersion": "v1.0.0",
  *    "message": "value must have at least 4 children",
  *    "result": []
  *    }

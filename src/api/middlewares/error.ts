@@ -3,7 +3,7 @@
 import {
     errorMessage,
     version
-} from "../../util/constants";
+} from "../../config/constants";
 import * as HttpStatus from "http-status";
 import CustomResponse from "../../util/response";
 import { Request, Response } from "express";

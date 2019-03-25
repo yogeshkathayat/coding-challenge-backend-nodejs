@@ -5,6 +5,13 @@ export const errorMessage = {
     INTERNAL_SERVER_ERROR: "Internal Server Error"
 
 };
+
+export const caseStatus = {
+    NEW: "New",
+    IN_PROGRESS: "InProgress",
+    RESOLVED: "Resolved"
+}
+
 export const version = {
     v1: "v1.0.0",
     v2: "v2.0.0",

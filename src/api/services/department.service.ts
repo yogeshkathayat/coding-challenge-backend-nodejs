@@ -1,5 +1,5 @@
 
-import Department from "../models/Department.model";
+import Department from "../models/department.model";
 
 
 export class DepartmentService {

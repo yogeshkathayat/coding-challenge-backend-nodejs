@@ -7,7 +7,7 @@ import {
   ForeignKey,
   BelongsTo
 } from "sequelize-typescript";
-import  Officer from "./Officer.model";
+import  Officer from "./officer.model";
 
 
 
