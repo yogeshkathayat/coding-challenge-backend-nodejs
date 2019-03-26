@@ -6,10 +6,23 @@ import Department from "../models/department.model";
 const caseService = new CaseService();
 
 
+/**
+ * OfficerService class
+ * contains service methods related
+ * to officer
+ * @class
+ */
 export class OfficerService {
 
-    async create(officerObj: Officer) {
 
+    /**
+     * @description function to add officer object
+     * into database and if any case is unassigned
+     * assign that case to the officer
+     * @param {Officer} officerObj officer Object
+     * @returns {Officer} created officer object
+     */
+    async create(officerObj: Officer) {
         try {
             // check if departmentId exists or not
             const dept = await Department.findOne({

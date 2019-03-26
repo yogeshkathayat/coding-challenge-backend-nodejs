@@ -6,9 +6,21 @@ import {
     caseStatus
 } from "../../config/constants";
 
-
+/**
+ * CaseService class
+ * contains service methods related
+ * to case
+ * @class
+ */
 export class CaseService {
 
+    /**
+     * @description function to add case object
+     * into database and if any officer is free
+     * assign the case to that officer
+     * @param {Case} caseObj case Object
+     * @returns {Case} created case object
+     */
     async create(caseObj: Case) {
         try {
             const availableOfficer = await Officer.findOne({
@@ -40,7 +52,14 @@ export class CaseService {
 
     }
 
-
+    /**
+     * @description function to resolve case
+     * based on caseId and update the status
+     * into database and if any case is unassigned
+     * assign that case to the officer
+     * @param {number} caseId case Id
+     * @returns {Case} resolved case object
+     */
     async resolve(caseId: number) {
         try {
             const caseObj = await Case.findOne({ where: { id: caseId } });
@@ -74,6 +93,13 @@ export class CaseService {
 
     }
 
+
+    /**
+     * @description function to search bike cases
+     * by different characteristics
+     * @param {any} query query object
+     * @returns {Array} list of found cases
+     */
     async find(query: any) {
         try {
 
@@ -120,6 +146,13 @@ export class CaseService {
 
     }
 
+
+    /**
+     * @description function to assign bike cases
+     * to the officer
+     * @param {number} officerId id of officer
+     * @returns {Case} case object
+     */
     async assignCase(officerId: number) {
         try {
             const unassignedCase = await Case.findOne({

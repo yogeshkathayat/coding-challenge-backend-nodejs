@@ -2,6 +2,10 @@ import request from "supertest";
 import app from "../src/config/app";
 import sequelize from "../src/config/sequelize";
 
+
+/**
+ * Creating Data into database for test cases
+ */
 beforeAll(async () => {
 
     await sequelize.sync({ force: true });
@@ -21,6 +25,10 @@ beforeAll(async () => {
         .send(officerData);
 });
 
+
+/**
+ * closing sequelize connection
+ */
 afterAll(async () => {
     await sequelize.close();
 });

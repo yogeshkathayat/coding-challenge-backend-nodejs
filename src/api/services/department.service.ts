@@ -1,9 +1,21 @@
 
 import Department from "../models/department.model";
 
-
+/**
+ * DepartmentService class
+ * contains service methods related
+ * to Department
+ * @class
+ */
 export class DepartmentService {
 
+
+   /**
+    * @description function to add department
+    * object into database
+    * @param {Department} departmentObj Department Object
+    * @returns {Department} created Department object
+    */
    async create(departmentObj: Department) {
       try {
          // check if department already exists

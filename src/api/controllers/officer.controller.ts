@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { check, validationResult } from "express-validator/check";
+import { validationResult } from "express-validator/check";
 import CustomResponse from "../../util/response";
 import * as HttpStatus from "http-status";
 import {
@@ -12,14 +12,28 @@ const officerService = new OfficerService();
 
 const fileName = "[officer.controller.js]";
 
+/**
+ * OfficerController class
+ * contains methods related to
+ * officer
+ * @class
+ */
 export class OfficerController {
+
+    /**
+     * @description function to check the validation result
+     * on request and if validation is success send req.body
+     * object to create method of officerService
+     * @param {Request} req req object containing officer object
+     * @param {Response} res response object
+     */
     public async addOfficer(req: Request, res: Response) {
         const methodName = "[addOfficer]";
         try {
             const errors = await validationResult(req);
 
             if (!errors.isEmpty()) {
-                return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, errorMessage.FAILED, version.v1, {error: errors.array()});
+                return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, errorMessage.FAILED, version.v1, { error: errors.array() });
             }
 
             const addedOfficer = await officerService.create(req.body);

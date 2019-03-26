@@ -8,6 +8,12 @@ import * as HttpStatus from "http-status";
 import CustomResponse from "../../util/response";
 import { Request, Response } from "express";
 
+/**
+ * HandleError class
+ * contains methods related to
+ * error handling
+ * @class
+ */
 export class HandleError {
     /**
      * Catch 404 and forward to error handler
