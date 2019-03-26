@@ -18,18 +18,26 @@ export class OfficerService {
                 }
             });
 
-            if (!dept) {
-                throw new Error("departmentId does not exists");
-            }
-            else {
-                const officer = await Officer.create(officerObj);
-                // check if any case in unassigned, assign that case to the officer
-                const caseAssigned = await caseService.assignCase(officer.id);
-                if (caseAssigned) {
-                    officer.caseId = caseAssigned.id;
+            if (!dept) throw new Error("departmentId does not exists");
+
+            // check if Officer already exists
+            const officerExists = await Officer.findOne({
+                where: {
+                    name: officerObj.name
                 }
-                return officer;
+            });
+
+            if (officerExists) throw new Error("officer already exists");
+
+
+            const officer = await Officer.create(officerObj);
+            // check if any case in unassigned, assign that case to the officer
+            const caseAssigned = await caseService.assignCase(officer.id);
+            if (caseAssigned) {
+                officer.caseId = caseAssigned.id;
             }
+            return officer;
+
         } catch (error) {
             throw error;
         }

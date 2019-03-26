@@ -49,7 +49,7 @@ const caseController = new CaseController();
  *  "code": 200,
  *  "message": "Sucess",
  *  "appVersion": "v1.0.0",
- *  "result": [
+ *  "result": 
  *       {
  *           "id": 4,
  *           "color": "blue",
@@ -63,7 +63,6 @@ const caseController = new CaseController();
  *            "createdAt": "2019-03-25T18:13:21.681Z",
  *            "officerId": null
  *        }
- *     ]
  * }
  *
  */
@@ -109,7 +108,7 @@ router.route("/add")
  *  "code": 200,
  *  "message": "Sucess",
  *  "appVersion": "v1.0.0",
- *  "result": [
+ *  "result": 
  *       {
  *           "id": 4,
  *           "color": "blue",
@@ -123,7 +122,6 @@ router.route("/add")
  *            "createdAt": "2019-03-25T18:13:21.681Z",
  *            "officerId": null
  *        }
- *     ]
  * }
  *
  */

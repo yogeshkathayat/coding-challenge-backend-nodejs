@@ -35,14 +35,13 @@ const departmentController = new DepartmentController();
  *     "code": 200,
  *     "message": "Sucess",
  *     "appVersion": "v1.0.0",
- *     "result": [
+ *     "result":
  *       {
  *         "id": 1,
  *         "name": "NYPD",
  *         "updatedAt": "2019-03-25T10:53:22.137Z",
  *         "createdAt": "2019-03-25T10:53:22.137Z"
  *     }
- *   ]
  * }
  *
  */

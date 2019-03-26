@@ -19,16 +19,16 @@ export class OfficerController {
             const errors = await validationResult(req);
 
             if (!errors.isEmpty()) {
-                return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, errorMessage.FAILED, version.v1, errors.array());
+                return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, errorMessage.FAILED, version.v1, {error: errors.array()});
             }
 
             const addedOfficer = await officerService.create(req.body);
 
-            return CustomResponse.setResponse(res, true, HttpStatus.OK, errorMessage.SUCCESS, version.v1, [addedOfficer]);
+            return CustomResponse.setResponse(res, true, HttpStatus.CREATED, errorMessage.SUCCESS, version.v1, addedOfficer);
         }
         catch (error) {
             logger.error(fileName + methodName + ":error in main try block:" + `${error}`);
-            return CustomResponse.setResponse(res, false, HttpStatus.INTERNAL_SERVER_ERROR, `${error}`, version.v1, []);
+            return CustomResponse.setResponse(res, false, HttpStatus.BAD_REQUEST, `${error}`, version.v1, {});
         }
     }
 
