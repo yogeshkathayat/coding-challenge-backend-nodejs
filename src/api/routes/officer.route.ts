@@ -16,7 +16,7 @@ const officerController = new OfficerController();
  * @apiParam  {String}      name            officer name
  * @apiParam  {Number}      departmentId    department Id
  *
- * @apiSuccess  {String}  id             officer's id
+ * @apiSuccess  {Number}  id             officer's id
  * @apiSuccess  {String}  name           officer's name
  * @apiSuccess  {Number}  departmentId   department Id
  *

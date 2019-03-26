@@ -102,6 +102,8 @@ export class CaseService {
      */
     async find(query: any) {
         try {
+            let perPage = 10;
+            let page = 0;
 
             const whereQuery: any = {};
             if (query.id) {
@@ -129,16 +131,28 @@ export class CaseService {
                 whereQuery.officerId = query.officerId;
             }
 
+            if (query.perPage) {
+                perPage = parseInt(query.perPage);
+            }
+            if (query.page) {
+                page = parseInt(query.page);
+            }
 
             const cases = await Case.findAll({
                 where: whereQuery,
+                limit: perPage,
+                offset: (page) * perPage,
+                order: [
+                    ["createdAt", "DESC"]
+                ],
                 include: [{
                     model: Officer,
                     include: [Department]
                 }]
             });
+            const totalCases = await Case.count({ where: whereQuery });
 
-            return cases;
+            return { cases, totalCases };
 
         } catch (error) {
             throw error;

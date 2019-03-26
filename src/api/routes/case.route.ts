@@ -28,7 +28,7 @@ const caseController = new CaseController();
  * @apiSuccess  {String}      dateOfTheft       dateOfTheft of bike
  * @apiSuccess  {String}      theftDescription  theftDescription
  * @apiSuccess  {String}      status            status of case
- * @apiSuccess  {String}      officerId         id of officer that has been assinged to the case
+ * @apiSuccess  {Number}      officerId         id of officer that has been assinged to the case
  *
  *
  *
@@ -49,7 +49,7 @@ const caseController = new CaseController();
  *  "code": 200,
  *  "message": "Sucess",
  *  "appVersion": "v1.0.0",
- *  "result": 
+ *  "result":
  *       {
  *           "id": 4,
  *           "color": "blue",
@@ -78,7 +78,7 @@ router.route("/add")
  * @apiGroup case
  * @apiPermission public
  *
- * @apiParam  {String}      caseId           id of case
+ * @apiParam  {Number}      caseId           id of case
  *
  * @apiSuccess  {String}      license           license of bike
  * @apiSuccess  {String}      color             color  of bike
@@ -87,7 +87,7 @@ router.route("/add")
  * @apiSuccess  {String}      dateOfTheft       dateOfTheft of bike
  * @apiSuccess  {String}      theftDescription  theftDescription
  * @apiSuccess  {String}      status            status of case
- * @apiSuccess  {String}      officerId         id of officer that has been assinged to the case
+ * @apiSuccess  {Number}      officerId         id of officer that has been assinged to the case
  *
  *
  *
@@ -136,16 +136,18 @@ router.route("/resolve")
  * @apiGroup case
  * @apiPermission public
  *
- * @apiParam  {String}      id                id of case
+ * @apiParam  {Number}      id                id of case
  * @apiParam  {String}      license           license of bike
  * @apiParam  {String}      color             color  of bike
  * @apiParam  {String}      type              type  of bike
  * @apiParam  {String}      owner             owner name
  * @apiParam  {String}      dateOfTheft       dateOfTheft of bike
  * @apiParam  {String}      status            status of case
- * @apiParam  {String}      officerId         id of officer that has been assinged to the case
+ * @apiParam  {Number}      officerId         id of officer that has been assinged to the case
+ * @apiParam  {Number}      perPage           records per page
+ * @apiParam  {Number}      page              page no starts with 0
  *
- * @apiSuccess  {String}      id                id of case
+ * @apiSuccess  {Number}      id                id of case
  * @apiSuccess  {String}      license           license of bike
  * @apiSuccess  {String}      color             color  of bike
  * @apiSuccess  {String}      type              type  of bike
@@ -153,7 +155,7 @@ router.route("/resolve")
  * @apiSuccess  {String}      dateOfTheft       dateOfTheft of bike
  * @apiSuccess  {String}      theftDescription  theftDescription
  * @apiSuccess  {String}      status            status of case
- * @apiSuccess  {String}      officerId         id of officer that has been assinged to the case
+ * @apiSuccess  {Number}      officerId         id of officer that has been assinged to the case
  *
  *
  *
@@ -174,7 +176,8 @@ router.route("/resolve")
  *  "code": 200,
  *  "message": "Sucess",
  *  "appVersion": "v1.0.0",
- *  "result": [
+ *  "result": {
+ *    "cases": [
  *       {
  *           "id": 4,
  *           "color": "blue",
@@ -201,7 +204,9 @@ router.route("/resolve")
  *            "createdAt": "2019-03-25T18:13:21.681Z",
  *            "officerId": null
  *        }
- *     ]
+ *     ],
+ *  "totalCases": 20
+ *  }
  * }
  *
  *

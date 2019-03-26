@@ -15,7 +15,7 @@ const departmentController = new DepartmentController();
  * @apiParam  {String}      name     department name
  *
  *
- * @apiSuccess  {String}  id             department's id
+ * @apiSuccess  {Number}  id             department's id
  * @apiSuccess  {String}  name           department's name
  *
  * @apiError (Bad Request 400)  ValidationError  Some parameters may contain invalid values
